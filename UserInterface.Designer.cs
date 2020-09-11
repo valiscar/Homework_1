@@ -1,6 +1,6 @@
-﻿namespace Homework_1
+﻿namespace KSU.CIS300.TowersOfHanoi
 {
-    partial class Form1
+    partial class UserInterface
     {
         /// <summary>
         /// Required designer variable.

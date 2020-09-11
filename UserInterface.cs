@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-/*
+
 namespace KSU.CIS300.TowersOfHanoi
 {
     public partial class UserInterface : Form
@@ -25,7 +25,7 @@ namespace KSU.CIS300.TowersOfHanoi
         public Stack<int> PegA = new Stack<int>();
         public Stack<int> PegB = new Stack<int>();
         public Stack<int> PegC = new Stack<int>();
-        private int _discCount;
+        private int _discCount;/*
 
         public UserInterface()
         {
@@ -37,7 +37,7 @@ namespace KSU.CIS300.TowersOfHanoi
         /// Creates the Disc that you see on the userinterface
         /// </summary>
         /// <param name="number"></param>
-        /// <param name="panel"></param>
+        /// <param name="panel"></param>*/
         private void DrawDisc(int number, FlowLayoutPanel panel)
         {
             Label Disc = new Label();
@@ -46,11 +46,11 @@ namespace KSU.CIS300.TowersOfHanoi
             Disc.Margin = new Padding(temp, 0, temp, 0);
             if (number % 2 == 1)
             {
-                Disc.BackColor = Color.LightBlue;
+                Disc.BackColor = Color.Blue;
             }
             else
             {
-                Disc.BackColor = Color.Orange;
+                Disc.BackColor = Color.Green;
             }
             Disc.Text = number.ToString();
             Disc.TextAlign = ContentAlignment.MiddleCenter;
@@ -79,13 +79,13 @@ namespace KSU.CIS300.TowersOfHanoi
         }
 
         /// <summary>
-        /// Creates a new puzzle, clears existing discs and adds new ones.
+        /// Creates a new puzzle by removing old discs and adding new ones
         /// </summary>
         /// <param name="count"></param>
 
         public void NewPuzzle(int count)
         {
-            uxMoveCountNum.Text = "0";
+            MoveCountNum.Text = "0";
             Moves = 0;
 
             PegA.Clear();
@@ -93,20 +93,20 @@ namespace KSU.CIS300.TowersOfHanoi
             PegC.Clear();
 
 
-            CleanPanel(uxFlowLayoutPanel1);
-            CleanPanel(uxFlowLayoutPanel2);
-            CleanPanel(uxFlowLayoutPanel3);
+            CleanPanel(flowLayoutPanel1);
+            CleanPanel(flowLayoutPanel2);
+            CleanPanel(flowLayoutPanel3);
             _discCount = count;
             for (int i = _discCount; i > 0; i--)
             {
-                DrawDisc(i, uxFlowLayoutPanel1);
+                DrawDisc(i, flowLayoutPanel1);
                 PegA.Push(i);
             }
 
         }
 
         /// <summary>
-        /// Checks to see if any discs have been moved, and updates the stack counts accordingly
+        /// Checks to see if discs have moved and updates stacks
         /// </summary>
         /// <param name="source"></param>
         /// <param name="sourceStack"></param>
@@ -144,7 +144,7 @@ namespace KSU.CIS300.TowersOfHanoi
         }
 
         /// <summary>
-        /// Checks to see if disc is able to move to the destination peg
+        /// Checks to see if disc can move
         /// </summary>
         /// <param name="from"></param>
         /// <param name="to"></param>
@@ -190,7 +190,7 @@ namespace KSU.CIS300.TowersOfHanoi
                     {
                         to.Push(from.Pop());
                         Moves++;
-                        uxMoveCountNum.Text = Moves.ToString();
+                        MoveCountNum.Text = Moves.ToString();
 
 
                         return true;
@@ -204,7 +204,7 @@ namespace KSU.CIS300.TowersOfHanoi
                 {
                     to.Push(from.Pop());
                     Moves++;
-                    uxMoveCountNum.Text = Moves.ToString();
+                    MoveCountNum.Text = Moves.ToString();
 
 
                     return true;
@@ -218,7 +218,7 @@ namespace KSU.CIS300.TowersOfHanoi
         }
 
         /// <summary>
-        /// Determines if x can move to y or if y can move to x
+        /// Checks whether disc x can be on top of disc y or vice versa
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -236,11 +236,11 @@ namespace KSU.CIS300.TowersOfHanoi
             Thread.Sleep(delay);
         }
         /// <summary>
-        /// Checks for win conditions met and displays if optimal and/or if you used the optimal amount of moves
+        /// Checks if puzzle conditions have been met and displays if player used the optimal amount of moves
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void uxFlowLayoutPanel3_ControlAdded(object sender, ControlEventArgs e)
+        private void UxFlowLayoutPanel3_ControlAdded(object sender, ControlEventArgs e)
         {
             if ((PegC.Count == _discCount) && (PegA.Count == 0) && (PegB.Count == 0))
             {
@@ -256,7 +256,7 @@ namespace KSU.CIS300.TowersOfHanoi
             }
         }
         /// <summary>
-        /// uses solve method when solve button is clicked
+        /// goes to solve after clicking the button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -265,7 +265,7 @@ namespace KSU.CIS300.TowersOfHanoi
             Solve(PegC, PegB, (int)numericUpDown1.Value);
         }
         /// <summary>
-        /// solve method used when you click solve
+        /// solves the puzzle
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -280,21 +280,21 @@ namespace KSU.CIS300.TowersOfHanoi
                 {
                     Moves++;
                     MoveEither(PegA, x, delay);
-                    uxMoveCountNum.Text = Moves.ToString();
+                    MoveCountNum.Text = Moves.ToString();
                     UpdatePanels();
                 }
                 if (PegC.Count != _discCount)
                 {
                     Moves++;
                     MoveEither(PegA, y, delay);
-                    uxMoveCountNum.Text = Moves.ToString();
+                    MoveCountNum.Text = Moves.ToString();
                     UpdatePanels();
                 }
                 if (PegC.Count != _discCount)
                 {
                     Moves++;
                     MoveEither(PegB, PegC, delay);
-                    uxMoveCountNum.Text = Moves.ToString();
+                    MoveCountNum.Text = Moves.ToString();
                     UpdatePanels();
                 }
             }
@@ -305,14 +305,14 @@ namespace KSU.CIS300.TowersOfHanoi
         /// </summary>
         private void UpdatePanels()
         {
-            UpdatePanelHelper(uxFlowLayoutPanel1, PegA, uxFlowLayoutPanel2, PegB, uxFlowLayoutPanel3, PegC);
-            UpdatePanelHelper(uxFlowLayoutPanel1, PegA, uxFlowLayoutPanel3, PegC, uxFlowLayoutPanel2, PegB);
+            UpdatePanelHelper(flowLayoutPanel1, PegA, flowLayoutPanel2, PegB, flowLayoutPanel3, PegC);
+            UpdatePanelHelper(flowLayoutPanel1, PegA, flowLayoutPanel3, PegC, flowLayoutPanel2, PegB);
 
-            UpdatePanelHelper(uxFlowLayoutPanel2, PegB, uxFlowLayoutPanel1, PegA, uxFlowLayoutPanel3, PegC);
-            UpdatePanelHelper(uxFlowLayoutPanel2, PegB, uxFlowLayoutPanel3, PegC, uxFlowLayoutPanel1, PegA);
+            UpdatePanelHelper(flowLayoutPanel2, PegB, flowLayoutPanel1, PegA, flowLayoutPanel3, PegC);
+            UpdatePanelHelper(flowLayoutPanel2, PegB, flowLayoutPanel3, PegC, flowLayoutPanel1, PegA);
 
-            UpdatePanelHelper(uxFlowLayoutPanel3, PegC, uxFlowLayoutPanel1, PegA, uxFlowLayoutPanel2, PegB);
-            UpdatePanelHelper(uxFlowLayoutPanel3, PegC, uxFlowLayoutPanel2, PegB, uxFlowLayoutPanel1, PegA);
+            UpdatePanelHelper(flowLayoutPanel3, PegC, flowLayoutPanel1, PegA, flowLayoutPanel2, PegB);
+            UpdatePanelHelper(flowLayoutPanel3, PegC, flowLayoutPanel2, PegB, flowLayoutPanel1, PegA);
         }
 
         /// <summary>
@@ -322,7 +322,7 @@ namespace KSU.CIS300.TowersOfHanoi
         /// <param name="e"></param>
         private void uxNew_Click(object sender, EventArgs e)
         {
-            NewPuzzle((int)uxNumericUpDown1.Value);
+            NewPuzzle((int)numericUpDown1.Value);
         }
 
 
@@ -388,12 +388,12 @@ namespace KSU.CIS300.TowersOfHanoi
 
 
     }
-}*/
+}
 
 
 
 //TEST CODE; TO BE REMOVED; this was my outdated click sets that more than likely wouldn't function properly
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -401,16 +401,16 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms;*/
 
 namespace Homework_1
 {
-    public partial class Form1 : Form
+    public partial class UserInterface : Form
     {
-        public Form1()
+        /*public UserInterface()
         {
             InitializeComponent();
-        }
+        }*/
         private void New_Click(object sender, EventArgs e)
         {
 
