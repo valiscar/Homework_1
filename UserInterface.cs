@@ -25,7 +25,7 @@ namespace KSU.CIS300.TowersOfHanoi
         public Stack<int> PegA = new Stack<int>();
         public Stack<int> PegB = new Stack<int>();
         public Stack<int> PegC = new Stack<int>();
-        private int _discCount;/*
+        private int discCount;/*
 
         public UserInterface()
         {
@@ -41,7 +41,7 @@ namespace KSU.CIS300.TowersOfHanoi
         private void DrawDisc(int number, FlowLayoutPanel panel)
         {
             Label Disc = new Label();
-            Disc.Width = (int)(panel.Width / (_discCount - number + 1.25));
+            Disc.Width = (int)(panel.Width / (discCount - number + 1.25));
             int temp = (panel.Width - Disc.Width) / 2;
             Disc.Margin = new Padding(temp, 0, temp, 0);
             if (number % 2 == 1)
@@ -96,8 +96,8 @@ namespace KSU.CIS300.TowersOfHanoi
             CleanPanel(flowLayoutPanel1);
             CleanPanel(flowLayoutPanel2);
             CleanPanel(flowLayoutPanel3);
-            _discCount = count;
-            for (int i = _discCount; i > 0; i--)
+            discCount = count;
+            for (int i = discCount; i > 0; i--)
             {
                 DrawDisc(i, flowLayoutPanel1);
                 PegA.Push(i);
@@ -242,9 +242,9 @@ namespace KSU.CIS300.TowersOfHanoi
         /// <param name="e"></param>
         private void FlowLayoutPanel3_ControlAdded(object sender, ControlEventArgs e)
         {
-            if ((PegC.Count == _discCount) && (PegA.Count == 0) && (PegB.Count == 0))
+            if ((PegC.Count == discCount) && (PegA.Count == 0) && (PegB.Count == 0))
             {
-                int optimal = (int)Math.Pow(2, _discCount) - 1;
+                int optimal = (int)Math.Pow(2, discCount) - 1;
                 if (Moves == optimal)
                 {
                     MessageBox.Show("You won in " + Moves + " moves" + "\n" + "This is the optimal amount of moves");
@@ -273,24 +273,24 @@ namespace KSU.CIS300.TowersOfHanoi
         public void Solve(Stack<int> x, Stack<int> y, int delay)
         {
 
-            while (PegC.Count != _discCount)
+            while (PegC.Count != discCount)
             {
                 //int i = 0;
-                if (PegC.Count != _discCount)
+                if (PegC.Count != discCount)
                 {
                     Moves++;
                     MoveEither(PegA, x, delay);
                     MoveCountNum.Text = Moves.ToString();
                     UpdatePanels();
                 }
-                if (PegC.Count != _discCount)
+                if (PegC.Count != discCount)
                 {
                     Moves++;
                     MoveEither(PegA, y, delay);
                     MoveCountNum.Text = Moves.ToString();
                     UpdatePanels();
                 }
-                if (PegC.Count != _discCount)
+                if (PegC.Count != discCount)
                 {
                     Moves++;
                     MoveEither(PegB, PegC, delay);
