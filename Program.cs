@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Homework_1
+namespace KSU.CIS300.TowersOfHanoi
 {
     static class Program
     {

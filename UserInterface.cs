@@ -240,7 +240,7 @@ namespace KSU.CIS300.TowersOfHanoi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UxFlowLayoutPanel3_ControlAdded(object sender, ControlEventArgs e)
+        private void FlowLayoutPanel3_ControlAdded(object sender, ControlEventArgs e)
         {
             if ((PegC.Count == _discCount) && (PegA.Count == 0) && (PegB.Count == 0))
             {
@@ -260,7 +260,7 @@ namespace KSU.CIS300.TowersOfHanoi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void uxSolve_Click(object sender, EventArgs e)
+        private void Solve_Click(object sender, EventArgs e)
         {
             Solve(PegC, PegB, (int)numericUpDown1.Value);
         }
@@ -320,13 +320,13 @@ namespace KSU.CIS300.TowersOfHanoi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void uxNew_Click(object sender, EventArgs e)
+        private void New_Click(object sender, EventArgs e)
         {
             NewPuzzle((int)numericUpDown1.Value);
         }
 
 
-        private void uxMoveCount_Click(object sender, EventArgs e)
+        private void MoveCount_Click(object sender, EventArgs e)
         {
 
         }
@@ -337,7 +337,7 @@ namespace KSU.CIS300.TowersOfHanoi
         }
 
         // All of the following methods are used to move discs with their corresponding directions
-        private void uxMoveLeft1_Click(object sender, EventArgs e)
+        private void MoveLeft1_Click(object sender, EventArgs e)
         {
             if (MoveDisc(PegA, PegC) == true)
             {
@@ -346,7 +346,7 @@ namespace KSU.CIS300.TowersOfHanoi
             }
         }
 
-        private void uxMoveRight1_Click(object sender, EventArgs e)
+        private void MoveRight1_Click(object sender, EventArgs e)
         {
             if (MoveDisc(PegA, PegB) == true)
             {
@@ -354,7 +354,7 @@ namespace KSU.CIS300.TowersOfHanoi
             }
         }
 
-        private void uxMoveLeft2_Click(object sender, EventArgs e)
+        private void MoveLeft2_Click(object sender, EventArgs e)
         {
             if (MoveDisc(PegB, PegA) == true)
             {
@@ -362,7 +362,7 @@ namespace KSU.CIS300.TowersOfHanoi
             }
         }
 
-        private void uxMoveRight2_Click(object sender, EventArgs e)
+        private void MoveRight2_Click(object sender, EventArgs e)
         {
             if (MoveDisc(PegB, PegC) == true)
             {
@@ -370,7 +370,7 @@ namespace KSU.CIS300.TowersOfHanoi
             }
         }
 
-        private void uxMoveLeft3_Click(object sender, EventArgs e)
+        private void MoveLeft3_Click(object sender, EventArgs e)
         {
             if (MoveDisc(PegC, PegB) == true)
             {
@@ -378,15 +378,48 @@ namespace KSU.CIS300.TowersOfHanoi
             }
         }
 
-        private void uxMoveRight3_Click(object sender, EventArgs e)
+        private void MoveRight3_Click(object sender, EventArgs e)
         {
             if (MoveDisc(PegC, PegA) == true)
             {
                 UpdatePanels();
             }
         }
+      
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
 
+        private void MoveCountNum_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Delay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 
@@ -403,14 +436,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;*/
 
-namespace Homework_1
+/*namespace Homework_1
 {
     public partial class UserInterface : Form
     {
-        /*public UserInterface()
+        public UserInterface()
         {
             InitializeComponent();
-        }*/
+        }
         private void New_Click(object sender, EventArgs e)
         {
 
@@ -492,3 +525,4 @@ namespace Homework_1
         }
     }
 }
+*/
